@@ -1,0 +1,8 @@
+names:
+  - myproject1ADF1
+location: "West Europe"
+resourceGroup: project1ResourceGroup1
+tags:
+  owner: marius
+  environment: dev
+  cost_center: 2512

@@ -1,0 +1,8 @@
+names:
+  - project2ResourceGroup1
+  - project2ResourceGroup2
+location: "EAST US 2"
+tags:
+  owner: marius
+  environment: dev
+  cost_center: 5232

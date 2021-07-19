@@ -1,0 +1,9 @@
+names:
+  - project1ResourceGroup1
+  - project1ResourceGroup2
+  - project1ResourceGroup3
+location: "East US"
+tags:
+  owner: marius
+  environment: englab
+  cost_center: 2512

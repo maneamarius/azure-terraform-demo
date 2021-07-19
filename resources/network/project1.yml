@@ -1,0 +1,17 @@
+vnet_name: myVNet1
+address_space:
+  - "10.0.0.0/24"
+dns_servers:
+  - "10.0.0.68"
+  - "10.0.0.69"
+subnets:
+  AzureFirewallSubnet: "10.0.0.0/26"
+  SharedServices: "10.0.0.64/26"
+  AzureBastionSubnet: "10.0.0.192/27"
+  GatewaySubnet: "10.0.0.224/27"
+location: "EAST US"
+resourceGroup: project1ResourceGroup2
+tags:
+  owner: marius
+  environment: dev
+  cost_center: 2512

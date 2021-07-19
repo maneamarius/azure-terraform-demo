@@ -1,0 +1,8 @@
+names:
+  - myproject2ADF1
+location: "EAST US"
+resourceGroup: project2ResourceGroup2
+tags:
+  owner: marius
+  environment: dev
+  ost_center: 2512
