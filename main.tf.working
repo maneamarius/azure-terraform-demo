@@ -1,0 +1,53 @@
+locals {
+  resourceGroupParams = {
+    for rgFile in fileset(path.module, "resources/resourceGroups/*.yml"):
+      rgFile => yamldecode(file(rgFile))
+  }
+
+  adfParams = {
+    for adfFile in fileset(path.module, "resources/adf/*.yml"):
+      adfFile => yamldecode(file(adfFile))
+  }
+
+  networkParams = {
+    for networkFile in fileset(path.module, "resources/network/*.yml"):
+      networkFile => yamldecode(file(networkFile))
+  }
+}
+
+module "resourceGroup" {
+  for_each        = local.resourceGroupParams
+  source          = "./modules/resourceGroup"
+  name            = each.value.name
+  location        = each.value.location
+  tags            = each.value.tags
+}
+
+module "adf" {
+  for_each            = local.adfParams
+  source              = "./modules/adf"
+  name                = each.value.name
+  location            = each.value.location
+  resource_group_name = each.value.resourceGroup
+  tags                = each.value.tags
+
+  depends_on = [
+    module.resourceGroup,
+  ]
+}
+
+module "network" {
+  for_each               = local.networkParams
+  source                 = "./modules/network"
+  resource_group         = each.value.resourceGroup
+  location               = each.value.location
+  tags                   = each.value.tags
+  vnet_name              = each.value.vnet_name
+  address_space          = each.value.address_space
+  dns_servers            = each.value.dns_servers
+  subnets                = each.value.subnets
+
+  depends_on = [
+    module.resourceGroup,
+  ]
+}
